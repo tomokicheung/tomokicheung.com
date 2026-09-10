@@ -21,8 +21,8 @@
   --body:       clamp(1rem, 1.15vw, 1.185rem);
   --caption:    .8125rem;
   --kicker:     .6875rem;
-  --serif: "Cormorant Garamond", Georgia, serif;
-  --sans:  "Space Grotesk", system-ui, sans-serif;
+  --serif: var(--font-cormorant);
+  --sans:  var(--font-space-grotesk);
   --jp:    "Noto Serif JP", serif;
 }
 

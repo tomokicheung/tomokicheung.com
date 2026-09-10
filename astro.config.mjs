@@ -1,5 +1,23 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
+import { defineConfig, fontProviders } from 'astro/config';
 
-// https://astro.build/config
-export default defineConfig({});
+export default defineConfig({
+  fonts: [
+    {
+      name: 'Cormorant Garamond',
+      cssVariable: '--font-cormorant',
+      provider: fontProviders.google(),
+      weights: [400, 500],
+      styles: ['normal', 'italic'],
+      fallbacks: ['Georgia', 'serif'],
+    },
+    {
+      name: 'Space Grotesk',
+      cssVariable: '--font-space-grotesk',
+      provider: fontProviders.google(),
+      weights: [400, 500],
+      styles: ['normal'],
+      fallbacks: ['system-ui', 'sans-serif'],
+    },
+  ],
+});

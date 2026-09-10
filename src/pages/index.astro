@@ -1,4 +1,5 @@
 ---
+import { Font } from 'astro:assets';
 import '../styles/tokens.css';
 ---
 
@@ -9,6 +10,8 @@ import '../styles/tokens.css';
     <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
+    <Font cssVariable="--font-cormorant" preload={[{ style: "normal" }]} />
+    <Font cssVariable="--font-space-grotesk" />
     <title>Tomoki Cheung</title>
   </head>
   <body>
