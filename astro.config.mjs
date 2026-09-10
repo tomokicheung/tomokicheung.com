@@ -2,6 +2,9 @@
 import { defineConfig, fontProviders } from 'astro/config';
 
 export default defineConfig({
+  // Required for canonical URLs and Open Graph, which must be absolute.
+  site: 'https://tomokicheung.com',
+
   fonts: [
     {
       name: 'Cormorant Garamond',

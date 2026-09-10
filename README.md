@@ -9,7 +9,7 @@ Personal portfolio and record for Tomoki Cheung, built as a static Astro site on
 ![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178C6)
 ![CSP](https://img.shields.io/badge/CSP-script--src%20'self'-2E7D32)
 
-**Live:** not yet public. The custom domain cutover is the first item on the roadmap.
+**Live:** [tomokicheung.com](https://tomokicheung.com)
 
 ## What this is
 

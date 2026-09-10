@@ -10,6 +10,10 @@ interface Props {
 
 const { title, description } = Astro.props;
 const pathname = Astro.url.pathname;
+
+// Astro.site comes from the `site` option in astro.config.mjs.
+// Open Graph requires absolute URLs, so this cannot be relative.
+const canonical = new URL(pathname, Astro.site).href;
 ---
 
 <html lang="en">
@@ -21,6 +25,17 @@ const pathname = Astro.url.pathname;
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     {description && <meta name="description" content={description} />}
+    <link rel="canonical" href={canonical} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Tomoki Cheung" />
+    <meta property="og:title" content={title} />
+    {description && <meta property="og:description" content={description} />}
+    <meta property="og:url" content={canonical} />
+
+    <!-- summary, not summary_large_image: there is no OG image yet, and
+         claiming a large card without one renders as a broken preview. -->
+    <meta name="twitter:card" content="summary" />
     <Font cssVariable="--font-cormorant" preload={[{ style: "normal" }]} />
     <Font cssVariable="--font-space-grotesk" />
   </head>

@@ -1,7 +1,17 @@
 {
   "name": "tomokicheung-com",
   "compatibility_date": "2026-09-09",
+  // Disabled deliberately, not by default. The workers.dev subdomain is
+  // derived from the account name and would publish it. Preview URLs are
+  // off with it; revisit if per-version testing becomes necessary.
+  "workers_dev": false,
+  "preview_urls": false,
+
   "assets": {
     "directory": "./dist"
-  }
+  },
+  "routes": [
+    { "pattern": "tomokicheung.com", "custom_domain": true },
+    { "pattern": "www.tomokicheung.com", "custom_domain": true }
+  ]
 }
