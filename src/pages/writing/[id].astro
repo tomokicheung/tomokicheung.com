@@ -1,0 +1,58 @@
+---
+import { getCollection, render } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+import Base from "../../layouts/Base.astro";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("writing", ({ data }) =>
+    import.meta.env.PROD ? data.draft !== true : true,
+  );
+  return posts.map((post) => ({
+    params: { id: post.id },
+    props: { post },
+  }));
+}
+
+type Props = { post: CollectionEntry<"writing"> };
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const formatted = post.data.date.toLocaleDateString("en-US", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+  timeZone: "UTC",
+});
+---
+
+<Base title={`${post.data.title} — Tomoki Cheung`} description={post.data.description}>
+  <a class="back meta" href="/writing/">&larr; Writing</a>
+
+  <p class="meta">
+    <time datetime={post.data.date.toISOString()}>{formatted}</time>
+  </p>
+  <h1>{post.data.title}</h1>
+
+  <div class="prose body">
+    <Content />
+  </div>
+
+  <style>
+    .back {
+      display: inline-block;
+      text-decoration: none;
+      margin-bottom: 3rem;
+    }
+
+    .back:hover { color: var(--ink); }
+
+    h1 {
+      font-size: var(--display-md);
+      margin: 0.3em 0 3rem;
+      max-width: 18ch;
+    }
+
+    .body h2:first-of-type { margin-top: 0; }
+  </style>
+</Base>

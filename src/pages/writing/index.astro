@@ -1,0 +1,81 @@
+---
+import { getCollection } from "astro:content";
+import Base from "../../layouts/Base.astro";
+
+// Drafts render locally but never in a production build.
+const posts = (
+  await getCollection("writing", ({ data }) =>
+    import.meta.env.PROD ? data.draft !== true : true,
+  )
+).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+// Dates are parsed as UTC midnight. Formatting them in Hawaii time
+// (UTC-10) would render the previous day, so the timezone is pinned.
+const fmt = (d: Date) =>
+  d.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    timeZone: "UTC",
+  });
+---
+
+<Base
+  title="Writing — Tomoki Cheung"
+  description="Notes on building things, and on what breaks after they ship."
+>
+  <p class="meta">Writing</p>
+  <h1>Notes on what breaks</h1>
+
+  <ul class="posts">
+    {posts.map((post) => (
+      <li>
+        <article>
+          <p class="meta">
+            <time datetime={post.data.date.toISOString()}>{fmt(post.data.date)}</time>
+            {post.data.draft && <span class="draft"> &middot; Draft</span>}
+          </p>
+          <h2>
+            <a href={`/writing/${post.id}/`}>{post.data.title}</a>
+          </h2>
+          <p class="summary">{post.data.description}</p>
+        </article>
+      </li>
+    ))}
+  </ul>
+
+  <style>
+    h1 {
+      font-size: var(--display-md);
+      margin: 0.3em 0 3rem;
+      max-width: 20ch;
+    }
+
+    .posts {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .posts li {
+      border-top: 1px solid var(--rule-strong);
+      padding: 2.5rem 0;
+    }
+
+    .posts h2 {
+      font-size: var(--display-md);
+      margin: 0.4rem 0 0.8rem;
+      max-width: 22ch;
+    }
+
+    .posts h2 a { text-decoration: none; }
+    .posts h2 a:hover { color: var(--vermilion); }
+
+    .draft { color: var(--vermilion); }
+
+    .summary {
+      max-width: 60ch;
+      margin: 0;
+    }
+  </style>
+</Base>
