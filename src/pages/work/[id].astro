@@ -1,0 +1,62 @@
+---
+import { getCollection, render } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+import Base from "../../layouts/Base.astro";
+
+export async function getStaticPaths() {
+  const projects = await getCollection("work");
+  return projects.map((project) => ({
+    params: { id: project.id },
+    props: { project },
+  }));
+}
+
+type Props = { project: CollectionEntry<"work"> };
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+---
+
+<Base title={`${project.data.title} — Tomoki Cheung`} description={project.data.description}>
+  <a class="back meta" href="/work/">&larr; Work</a>
+
+  <p class="meta role">{project.data.role} &middot; {project.data.status}</p>
+  <h1>{project.data.title}</h1>
+
+  <div class="prose body">
+    <Content />
+  </div>
+
+  {project.data.liveUrl && (
+    <p class="live">
+      <a href={project.data.liveUrl} target="_blank" rel="noopener noreferrer">Visit the live site &rarr;</a>
+    </p>
+  )}
+
+  <style>
+    .back {
+      display: inline-block;
+      text-decoration: none;
+      margin-bottom: 3rem;
+    }
+
+    .back:hover { color: var(--vermilion); }
+
+    h1 {
+      font-size: var(--display-md);
+      margin: 0.3em 0 2.5rem;
+      max-width: 18ch;
+    }
+
+    .body { margin-bottom: 3rem; }
+
+    .live a {
+      font-family: var(--serif);
+      font-size: 1.4rem;
+      text-decoration-color: var(--text-muted);
+      text-underline-offset: 0.25em;
+    }
+
+    .live a:hover { color: var(--vermilion); }
+  </style>
+</Base>

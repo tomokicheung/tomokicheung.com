@@ -1,0 +1,63 @@
+---
+import { getCollection } from "astro:content";
+import Base from "../../layouts/Base.astro";
+
+const projects = (await getCollection("work")).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+---
+
+<Base
+  title="Work — Tomoki Cheung"
+  description="Client work and ventures: Pacific Consulting Hawaiʻi, Our Cradle, and Krafty Case."
+>
+  <p class="meta">Work</p>
+  <h1>What I have built</h1>
+
+  <ul class="projects">
+    {projects.map((project) => (
+      <li>
+        <article>
+          <p class="meta">{project.data.role} &middot; {project.data.status}</p>
+          <h2>
+            <a href={`/work/${project.id}/`}>{project.data.title}</a>
+          </h2>
+          <p class="summary">{project.data.description}</p>
+        </article>
+      </li>
+    ))}
+  </ul>
+
+  <style>
+    h1 {
+      font-size: var(--display-md);
+      margin: 0.3em 0 3rem;
+      max-width: 20ch;
+    }
+
+    .projects {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .projects li {
+      border-top: 1px solid var(--rule-strong);
+      padding: 2.5rem 0;
+    }
+
+    .projects h2 {
+      font-size: var(--display-md);
+      margin: 0.4rem 0 0.8rem;
+    }
+
+    .projects h2 a { text-decoration: none; }
+    .projects h2 a:hover { color: var(--vermilion); }
+
+    .summary {
+      max-width: 60ch;
+      color: var(--ink);
+      margin: 0;
+    }
+  </style>
+</Base>

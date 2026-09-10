@@ -1,0 +1,93 @@
+---
+import { Font } from "astro:assets";
+import "../styles/tokens.css";
+import "../styles/base.css";
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description } = Astro.props;
+const pathname = Astro.url.pathname;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+    <Font cssVariable="--font-cormorant" preload={[{ style: "normal" }]} />
+    <Font cssVariable="--font-space-grotesk" />
+  </head>
+
+  <body>
+    <header class="site-head">
+      <a href="/" class="wordmark">Tomoki Cheung</a>
+      <nav aria-label="Primary">
+        <a href="/work/" aria-current={pathname.startsWith("/work") ? "page" : undefined}>Work</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <slot />
+    </main>
+
+    <footer class="site-foot">
+      <span class="meta">Honolulu, Hawaiʻi</span>
+      <a class="meta" href="mailto:tom@ourcradle.com">tom@ourcradle.com</a>
+    </footer>
+
+    <style>
+      .site-head,
+      .site-foot {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 2rem;
+        padding: 2rem clamp(1.5rem, 5vw, 5rem);
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .site-head { border-bottom: 1px solid var(--rule); }
+
+      .wordmark {
+        font-family: var(--serif);
+        font-size: 1.35rem;
+        text-decoration: none;
+      }
+
+      nav a {
+        font-size: var(--kicker);
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        font-weight: 500;
+        text-decoration: none;
+        color: var(--text-muted);
+      }
+
+      nav a:hover,
+      nav a[aria-current="page"] { color: var(--ink); }
+
+      main {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: clamp(3rem, 8vw, 7rem) clamp(1.5rem, 5vw, 5rem);
+        min-height: 60vh;
+      }
+
+      .site-foot {
+        border-top: 1px solid var(--rule);
+        margin-top: 4rem;
+      }
+
+      .site-foot a { text-decoration: none; }
+      .site-foot a:hover { color: var(--ink); }
+    </style>
+  </body>
+</html>

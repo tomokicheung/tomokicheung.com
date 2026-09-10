@@ -1,44 +1,78 @@
 ---
-import { Font } from 'astro:assets';
-import '../styles/tokens.css';
+import { getCollection } from "astro:content";
+import Base from "../layouts/Base.astro";
+
+const projects = (await getCollection("work")).sort(
+  (a, b) => a.data.order - b.data.order,
+);
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <Font cssVariable="--font-cormorant" preload={[{ style: "normal" }]} />
-    <Font cssVariable="--font-space-grotesk" />
-    <title>Tomoki Cheung</title>
-  </head>
-  <body>
-    <h1>Tomoki Cheung</h1>
-    <p class="kicker">Token check</p>
-  </body>
-</html>
+<Base
+  title="Tomoki Cheung"
+  description="Developer in Honolulu. Web development, client work, and writing about what breaks."
+>
+  <p class="meta">Honolulu, Hawaiʻi</p>
+  <h1>Tomoki Cheung</h1>
 
-<style>
-  body {
-    background: var(--washi);
-    color: var(--ink);
-    font-family: var(--sans);
-    margin: 0;
-    padding: 4rem 2rem;
-  }
-  h1 {
-    font-family: var(--serif);
-    font-size: var(--display-lg);
-    color: var(--vermilion);
-    margin: 0;
-    line-height: 0.95;
-  }
-  .kicker {
-    font-size: var(--kicker);
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--river-stone);
-  }
-</style>
+  <div class="intro prose">
+    <p>
+      I build websites for businesses without technical staff, and I am
+      finishing a computer science degree at UH Mānoa. Most of what I know
+      came from shipping things and then finding out what I had missed.
+    </p>
+  </div>
+
+  <hr class="rule" />
+
+  <h2 class="section-label meta">Selected work</h2>
+  <ul class="work-list">
+    {projects.map((project) => (
+      <li>
+        <a href={`/work/${project.id}/`}>
+          <span class="work-title">{project.data.title}</span>
+          <span class="meta">{project.data.role} &middot; {project.data.status}</span>
+        </a>
+      </li>
+    ))}
+  </ul>
+
+  <style>
+    h1 {
+      font-size: var(--display-lg);
+      color: var(--vermilion);
+      margin: 0.2em 0 0.6em;
+    }
+
+    .intro { margin-bottom: 4rem; }
+
+    .rule { margin-bottom: 2.5rem; }
+
+    .section-label { display: block; margin-bottom: 1.5rem; }
+
+    .work-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .work-list li + li { border-top: 1px solid var(--rule); }
+
+    .work-list a {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 0.5rem 2rem;
+      padding: 1.4rem 0;
+      text-decoration: none;
+    }
+
+    .work-title {
+      font-family: var(--serif);
+      font-size: var(--display-md);
+      line-height: 1.1;
+    }
+
+    .work-list a:hover .work-title { color: var(--vermilion); }
+  </style>
+</Base>

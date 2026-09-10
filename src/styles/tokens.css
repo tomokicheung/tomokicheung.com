@@ -34,3 +34,12 @@ html[lang="ja"] {
   --display-lg: clamp(2rem, 5.1vw, 4.9rem);
   --display-md: clamp(1.45rem, 3vw, 2.65rem);
 }
+
+/* Semantic roles. Primitives above answer "what colour is washi";
+   these answer "what colour is muted text". Added when metadata at
+   --river-stone measured 1.58:1 against --washi, failing WCAG AA. */
+:root {
+  --text-muted: #6E655B;  /* 4.75:1 on --washi */
+  --rule:       var(--washi-deep);
+  --rule-strong: var(--river-stone);
+}
