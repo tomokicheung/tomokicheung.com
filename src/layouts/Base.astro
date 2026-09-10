@@ -31,6 +31,7 @@ const pathname = Astro.url.pathname;
       <nav aria-label="Primary">
         <a href="/work/" aria-current={pathname.startsWith("/work") ? "page" : undefined}>Work</a>
         <a href="/writing/" aria-current={pathname.startsWith("/writing") ? "page" : undefined}>Writing</a>
+        <a href="/about/" aria-current={pathname.startsWith("/about") ? "page" : undefined}>About</a>
       </nav>
     </header>
 
@@ -61,6 +62,11 @@ const pathname = Astro.url.pathname;
         font-family: var(--serif);
         font-size: 1.35rem;
         text-decoration: none;
+      }
+
+      nav {
+        display: flex;
+        gap: 1.5rem;
       }
 
       nav a {
