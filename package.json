@@ -16,5 +16,8 @@
   },
   "allowScripts": {
     "esbuild": true
+  },
+  "devDependencies": {
+    "wrangler": "^4.130.0"
   }
 }
