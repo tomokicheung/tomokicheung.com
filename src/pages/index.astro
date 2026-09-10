@@ -1,17 +1,41 @@
 ---
-
+import '../styles/tokens.css';
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Tomoki Cheung</title>
+  </head>
+  <body>
+    <h1>Tomoki Cheung</h1>
+    <p class="kicker">Token check</p>
+  </body>
 </html>
+
+<style>
+  body {
+    background: var(--washi);
+    color: var(--ink);
+    font-family: var(--sans);
+    margin: 0;
+    padding: 4rem 2rem;
+  }
+  h1 {
+    font-family: var(--serif);
+    font-size: var(--display-lg);
+    color: var(--vermilion);
+    margin: 0;
+    line-height: 0.95;
+  }
+  .kicker {
+    font-size: var(--kicker);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--river-stone);
+  }
+</style>

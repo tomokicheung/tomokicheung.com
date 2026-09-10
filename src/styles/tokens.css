@@ -1,0 +1,36 @@
+/* Design tokens. Lifted verbatim from the 2026 single-file build. */
+
+:root {
+  --washi:       #F1E9DE;
+  --washi-warm:  #ECE4D9;
+  --washi-deep:  #E4DED5;
+  --sand:        #E9D4BD;
+  --river-stone: #C1BBB2;
+  --night:       #241B15;
+  --night-deep:  #1A130E;
+  --ink:         #251C16;
+  --cream-text:  #EDE9DF;
+  --vermilion:   #C4472F;
+  --lantern:     #E8A54B;
+  --sakura:      #E8B4C0;
+  --sakura-deep: #D98E9F;
+
+  --display-xl: clamp(4rem, 11vw, 11.5rem);
+  --display-lg: clamp(3rem, 7vw, 7rem);
+  --display-md: clamp(2rem, 4vw, 3.5rem);
+  --body:       clamp(1rem, 1.15vw, 1.185rem);
+  --caption:    .8125rem;
+  --kicker:     .6875rem;
+  --serif: "Cormorant Garamond", Georgia, serif;
+  --sans:  "Space Grotesk", system-ui, sans-serif;
+  --jp:    "Noto Serif JP", serif;
+}
+
+/* Japanese display scale, roughly 72% of the Latin ramp.
+   Japanese glyphs are full-width and denser, so the same rem value
+   reads heavier. Scaling down is a correction, not taste. */
+html[lang="ja"] {
+  --display-xl: clamp(2.9rem, 8.4vw, 8.4rem);
+  --display-lg: clamp(2rem, 5.1vw, 4.9rem);
+  --display-md: clamp(1.45rem, 3vw, 2.65rem);
+}
