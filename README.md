@@ -9,7 +9,7 @@ Personal portfolio and record for Tomoki Cheung, built as a static Astro site on
 ![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178C6)
 ![CSP](https://img.shields.io/badge/CSP-script--src%20'self'-2E7D32)
 
-**Live:** tomokicheung.com *(pending domain cutover)*
+**Live:** not yet public. The custom domain cutover is the first item on the roadmap.
 
 ## What this is
 
@@ -72,7 +72,7 @@ Anything in `public/` ships verbatim to the served directory. Images belong in `
 
 ## Decisions
 
-Ten records so far, in [`docs/adr/`](docs/adr/). The ones worth reading first:
+Eleven records so far, in [`docs/adr/`](docs/adr/). The ones worth reading first:
 
 - [ADR-0005](docs/adr/0005-explicit-order-field.md) — why project order is an explicit field rather than filesystem order
 - [ADR-0006](docs/adr/0006-semantic-colour-layer.md) — why the semantic colour layer was deferred, and what forced it
