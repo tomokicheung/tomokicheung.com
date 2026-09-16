@@ -104,4 +104,8 @@ Deployments take time to propagate. A check run immediately after `wrangler depl
 
 ## License
 
-Undecided, and deliberately so. In the absence of a license, all rights are reserved. See [ADR-0011](docs/adr/0011-license-split.md) for the open question: the code here is worth sharing, the essays are not obviously worth relicensing.
+The code is MIT licensed: Astro configuration, components, styles, build setup. Take what is useful.
+
+Written content is not covered and remains all rights reserved. That includes the essays, the decision records, and the project write-ups. Client logos, screenshots, and copy belong to those clients and were never mine to license.
+
+See [ADR-0011](docs/adr/0011-license-split.md).
