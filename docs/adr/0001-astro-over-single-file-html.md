@@ -29,6 +29,10 @@ The decision was independently reviewed by a second model working without access
 
 Positive: components and layouts eliminate duplicated markup. Content collections give schema-validated, typed content. The image pipeline converts and hashes automatically; a 138kB PNG became a 42kB WebP with no manual step.
 
-Positive, and unanticipated: the exposure model improves. On Workers static assets every repository file is public by default, which is why an `.assetsignore` was needed previously. Astro serves only `dist/`, so the README, `docs/`, and configuration cannot be reached. The danger moves from the repository root to `public/`, which ships verbatim.
+Positive, and unanticipated: the exposure model improves. On Workers static assets every repository file is served by default, which is why an `.assetsignore` was needed previously. Astro serves only `dist/`, so the README, `docs/`, and configuration are not served from the site. They remain public on GitHub, which is intended. What changes is that publication becomes a decision rather than a side effect. The danger moves from the repository root to `public/`, which ships verbatim.
 
 Negative: a build step is a thing that can fail. Dependencies now exist and must be maintained. Astro conventions must be learned, and the version installed (7.3.2) is newer than the assistant's training data, so version-specific guidance has to be checked against documentation rather than recalled.
+
+## Amendments
+
+**2026-09-16:** An earlier version of the consequences section stated that the README, `docs/`, and configuration cannot be reached. They are not served from the site, but they are public on GitHub. Corrected.
