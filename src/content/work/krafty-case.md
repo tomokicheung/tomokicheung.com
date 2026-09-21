@@ -1,6 +1,6 @@
 ---
 title: "Krafty Case"
-order: 3
+order: 4
 role: "Founder, sole operator"
 status: "On pause"
 liveUrl: "https://kraftycase.com/"
